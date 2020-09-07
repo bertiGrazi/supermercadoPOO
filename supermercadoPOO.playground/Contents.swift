@@ -6,13 +6,15 @@ class Produto{
     var fabricante: String
     var preco: Double
     var codigo: Int
+    var marcaDoProduto: String
     
-    init(nome: String, validade: String, fabricante: String, preco:Double, codigo:Int){
+    init(nome: String, validade: String, fabricante: String, preco:Double, codigo:Int, marcaDoProduto: String){
         self.nome = nome
         self.validade = validade
         self.fabricante = fabricante
         self.preco = preco
         self.codigo = codigo
+        self.marcaDoProduto = marcaDoProduto
 }
     func estaNaValidade() -> Bool{
         if validade > "2019"{
@@ -70,16 +72,19 @@ class Cliente: Produto{
     var genero: String
     var dataNascimento: String
     var endereco: String
+    var telefone: String
     
-    init(nome: String, validade: String, fabricante: String, preco: Double, codigo: Int, cpf: Int, nomeDoCliente: String, genero: String, dataNascimento: String, endereco: String) {
+    init(nome: String, validade: String, fabricante: String, preco: Double, codigo: Int,marcaDoProduto: String, cpf: Int, nomeDoCliente: String, genero: String, dataNascimento: String, endereco: String, telefone: String) {
         
         self.cpf = cpf
         self.nomeDoCliente = nomeDoCliente
         self.genero = genero
         self.dataNascimento = dataNascimento
         self.endereco = endereco
+        self.telefone = telefone
         
-        super.init(nome: nome, validade: validade, fabricante: fabricante, preco: preco, codigo: codigo)
+        
+        super.init(nome: nome, validade: validade, fabricante: fabricante, preco: preco, codigo: codigo, marcaDoProduto: marcaDoProduto)
     }
     
     func temCadastro() -> Bool{
@@ -127,19 +132,20 @@ class Pagamento: Produto{
     var cupom: Bool
     var quantidadeDeProdutos: Int
     var bandeira: String
+    var validadeCartao: String
     
     
-    
-    init(nome: String, validade: String, fabricante: String, preco: Double, codigo: Int, formaDePagamento: String, valorTotal: Double, cupom: Bool, quantidadeDeProdutos: Int, bandeira: String) {
+    init(nome: String, validade: String, fabricante: String, preco: Double, codigo: Int,marcaDoProduto: String, formaDePagamento: String, valorTotal: Double, cupom: Bool, quantidadeDeProdutos: Int, bandeira: String, validadeCartao: String) {
         
         self.formaDePagamento = formaDePagamento
         self.valorTotal = valorTotal
         self.cupom = cupom
         self.quantidadeDeProdutos = quantidadeDeProdutos
         self.bandeira = bandeira
+        self.validadeCartao = validadeCartao
         
         
-        super.init(nome: nome, validade: validade, fabricante: fabricante, preco: preco, codigo: codigo)
+        super.init(nome: nome, validade: validade, fabricante: fabricante, preco: preco, codigo: codigo, marcaDoProduto: marcaDoProduto)
     }
     
     func pagamentoAVista(){
@@ -212,13 +218,14 @@ let cliente01 = Cliente(nome: "Arroz", validade: "2021", fabricante: "Tio João"
     cliente01.temCartao()*/
     
     
-let pagamento = Pagamento(nome: "Arroz", validade: "2019", fabricante: "Tio João", preco: 9.50, codigo: 1050, formaDePagamento: "Crédito", valorTotal: 9.50, cupom: false, quantidadeDeProdutos: 1, bandeira: "Visa")
+let pagamento = Pagamento(nome: "Arroz", validade: "2019", fabricante: "Tio João", preco: 9.50, codigo: 1050, marcaDoProduto: "Tio João", formaDePagamento: "Crédito", valorTotal: 9.50, cupom: false, quantidadeDeProdutos: 1, bandeira: "Visa", validadeCartao: "2027")
 
     print(pagamento.formaDePagamento)
     print(pagamento.valorTotal)
     print(pagamento.cupom)
     print(pagamento.quantidadeDeProdutos)
     print(pagamento.bandeira)
+    print(pagamento.validadeCartao)
 
     print(pagamento.qualBandeira())
     print(pagamento.meusPedidos())
